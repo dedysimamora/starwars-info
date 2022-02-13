@@ -1,0 +1,33 @@
+.section-description {
+  font-size: 20px;
+}
+
+.section-sub-title {
+  margin-top: 0px !important;
+  font-weight: 700 !important;
+}
+
+.section-title {
+  margin-bottom: 0px !important;
+  font-weight: 900 !important;
+}
+
+.section-page-image-preview {
+  max-height: 401px !important;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .section-page-container {
+    padding: 10px;
+  }
+  .section-page-image-preview {
+    width: 90% !important;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .section-page-container {
+    padding: 50px;
+  }
+}

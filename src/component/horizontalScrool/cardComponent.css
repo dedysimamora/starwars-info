@@ -1,0 +1,14 @@
+.card-component .ant-card-body {
+    padding: 10px !important;
+}
+
+.card-component .ant-card-meta-title {
+    margin-bottom: 0px !important;
+}
+
+.card-component .ant-card-cover img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    max-height: 320px !important;
+  
+  }

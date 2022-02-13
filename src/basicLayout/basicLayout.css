@@ -1,0 +1,38 @@
+.site-layout-content {
+    min-height: 280px;
+    padding: 24px;
+    background: #fff;
+  }
+  #components-layout-demo-top .logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .ant-row-rtl #components-layout-demo-top .logo {
+    float: right;
+    margin: 16px 0 16px 24px;
+  }
+
+  .ant-menu-title-content {
+      font-weight: 900;
+  }
+
+
+  @media screen and (max-width: 480px) {
+        .logo img {
+            width: 70px;
+        }
+  }
+
+  @media screen and (min-width: 480px) {
+    .logo img {
+        width: 100px;
+    }
+}
+
+.element-section {
+    min-height: 94vh;
+    width: 100%;
+}
