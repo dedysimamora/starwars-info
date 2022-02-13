@@ -18,8 +18,9 @@ const Index : React.FC<componentPoolProps> = ({title, data}) => {
         return `${splitName[0].charAt(0).toUpperCase()} ${splitName[1] !== undefined ? splitName[1].charAt(0).toUpperCase() : splitName[0].charAt(1).toUpperCase()}`
     }
   return (
-    <div className="component-pool-container">
+    <div>
     <Title className="component-pool-title" level={4}>{title}</Title>
+    <div className="component-pool-container">
       <Row gutter={[8,8]}>
         {data.map((e, index) => (
             <Col >
@@ -31,6 +32,7 @@ const Index : React.FC<componentPoolProps> = ({title, data}) => {
             </Col>
         ))}
       </Row>
+      </div>
     </div>
   );
 };

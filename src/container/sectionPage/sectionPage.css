@@ -16,18 +16,34 @@
   max-height: 401px !important;
   border-radius: 10px;
 }
+.section-page-image-preview-container .ant-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 @media screen and (max-width: 480px) {
   .section-page-container {
     padding: 10px;
   }
   .section-page-image-preview {
-    width: 90% !important;
+    width: 80% !important;
+  }
+  .hide-on-mobile {
+      display: none;
+  }
+  .section-sub-title {
+      text-align: center;
+      margin-top: 20px !important;
   }
 }
 
 @media screen and (min-width: 480px) {
   .section-page-container {
     padding: 50px;
+  }
+  .hide-on-dekstop {
+      display: none;
   }
 }

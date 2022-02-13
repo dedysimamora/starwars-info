@@ -3,6 +3,12 @@
     padding: 24px;
     background: #fff;
   }
+  .ant-layout-header {
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 999 !important;
+    width:100% !important;
+  }
   #components-layout-demo-top .logo {
     float: left;
     width: 120px;
@@ -19,6 +25,11 @@
       font-weight: 900;
   }
 
+  .element-section {
+      padding-top: 64px;
+  }
+  
+
 
   @media screen and (max-width: 480px) {
         .logo img {
@@ -32,7 +43,3 @@
     }
 }
 
-.element-section {
-    min-height: 94vh;
-    width: 100%;
-}
