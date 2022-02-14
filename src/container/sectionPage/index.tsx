@@ -5,6 +5,9 @@ import getMoviesData from "../../utils/localMovies";
 import { mappingMoviePoster } from "../../utils/mappingImage";
 import ComponentPool from "../../component/componentPool";
 import { scroller } from "react-scroll";
+import {Constant} from '../../utils/constant';
+import { useLazyQuery, useQuery } from '@apollo/client';
+import { GET_MOVIES } from '../../apollo/query/server-query';
 import "./sectionPage.css";
 
 interface dataSectionProps {
@@ -20,7 +23,7 @@ const Index : React.FC<SectionPageProps> = ({data}) => {
   const { Title, Paragraph, Text, Link } = Typography;
   const [arrData, setArrData] = useState(getMoviesData);
   const [activeIndex, setActiveIndex] = useState(0);
-  
+  const { data  : dataArr, loading, error } = useQuery(GET_MOVIES);
   const scroolFunction = (componentName: string): void => {
     scroller.scrollTo(componentName, {
       duration: 800,
@@ -28,6 +31,14 @@ const Index : React.FC<SectionPageProps> = ({data}) => {
       smooth: "easeInOutQuart",
     });
   };
+
+  useEffect(() => {
+      console.log(">>>>>>> dataArr", dataArr)
+      console.log(">>>>>>> loading", loading)
+      console.log(">>>>>>> error", dataArr)
+  }, [dataArr, loading, error])
+  
+
   return (
     <div className="section-page-container">
       <Row>
