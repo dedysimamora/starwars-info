@@ -1,64 +1,41 @@
 import React from "react";
-import { Card } from "antd";
-import {mappingMoviePoster} from "../../utils/mappingImage"
+import { Card, Typography } from "antd";
+import { mappingMoviePoster } from "../../utils/mappingImage";
+import { getInitialName } from "../../utils/getInitialName";
 
-import "./cardComponent.css"
+import "./cardComponent.css";
 export function CardComponent({
-  itemId,
   onClick,
-  releaseDate,
-  title,
-  index
+  data,
+  index,
 }: {
-  itemId: string;
-  releaseDate:string;
+  data: any;
   onClick: Function;
-  title: string;
   index: number;
 }) {
   const { Meta } = Card;
-
+  const { Title } = Typography;
   return (
-    // <div
-    //   onClick={() => onClick()}
-    //   role="button"
-    //   style={{
-    //     border: "1px solid",
-    //     display: "inline-block",
-    //     margin: "0 10px",
-    //     width: "160px",
-    //     userSelect: "none"
-    //   }}
-    //   tabIndex={0}
-    //   className="card"
-    // >
-    //   <div>
-    //     <div>{title}</div>
-    //     <div style={{ backgroundColor: visible ? "transparent" : "gray" }}>
-    //       visible: {JSON.stringify(visible)}
-    //     </div>
-    //     <div>selected: {JSON.stringify(!!selected)}</div>
-    //   </div>
-    //   <div
-    //     style={{
-    //       backgroundColor: selected ? "green" : "bisque",
-    //       height: "200px"
-    //     }}
-    //   />
-    // </div>
     <Card
       hoverable
       onClick={() => onClick(index)}
-      className="card-component"
-      style={{ width: 240, marginRight: "20px", borderRadius:'15px' }}
+      className={data.__typename === "Film" ? "card-component" : "card-component-text"}
+      style={{ width: 240, marginRight: "20px", borderRadius: "15px" }}
       cover={
-        <img
-          alt="example"
-          src={mappingMoviePoster[title]}
-        />
+        data.__typename === "Film" && (
+          <img alt="example" src={mappingMoviePoster[data.title]} />
+        )
       }
     >
-      <Meta title={title} description={releaseDate} />
+      {data.__typename !== "Film" && (
+        <Title level={1} className="section-image-initial-card-title">
+          {getInitialName(data.name)}
+        </Title>
+      )}
+      <Meta
+        title={data.__typename === "Film" ? data.title : data.name}
+        description={data.__typename === "Film" ? data.releaseDate : null}
+      />
     </Card>
   );
 }

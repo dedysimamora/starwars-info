@@ -1,4 +1,4 @@
-export const GET_PERSON_VAR = (id: string) => {
+export const GET_DETAIL_VAR = (id: string) => {
   return {
     id: id,
   };

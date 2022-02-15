@@ -1,6 +1,17 @@
+.card-component-text .ant-card-body {
+    padding: 10px !important;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E6E8EA;
+}
+
 .card-component .ant-card-body {
     padding: 10px !important;
+
 }
+
 
 .card-component .ant-card-meta-title {
     margin-bottom: 0px !important;

@@ -1,41 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Menu, Row, Col } from "antd";
 import starWarsLogo from "../assets/logo/starWarsLogo.png";
 import LandingPage from "../container/landingPage";
 import SectionPage from "../container/sectionPage";
-import { Element, scroller } from "react-scroll";
+import ModalDetails from "../component/modalDetails"
+import { useQuery } from '@apollo/client';
+import { Element, Link } from "react-scroll";
+import {modalStateReactive} from "../apollo/reactive-variable/modal-data"
+import {GET_MODAL_DATA} from "../apollo/query/client-query"
+import {
+  GET_MOVIES,
+  GET_PEOPLE,
+  GET_PLANETS,
+} from "../apollo/query/server-query";
 import "./basicLayout.css";
 const Index = () => {
   const { Header, Content, Footer } = Layout;
+  const {data : {modal : modalData}, loading, error} = useQuery(GET_MODAL_DATA)
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const menuSection = [
     {
       menuName: "FILMS",
-      endpoint: "blabla",
+      query: GET_MOVIES,
+      dataPath: "allFilms.films",
+      connections: [
+        "characterConnection.characters",
+        "starshipConnection.starships",
+      ],
     },
     {
       menuName: "PEOPLE",
-      endpoint: "blabla",
+      dataPath: "allPeople.people",
+      query: GET_PEOPLE,
+      connections: [
+        "starshipConnection.starships",
+        "vehicleConnection.vehicles",
+      ],
     },
     {
       menuName: "PLANET",
-      endpoint: "blabla",
+      query: GET_PLANETS,
+      dataPath: "allPlanets.planets",
+      connections: ["residentConnection.residents"],
     },
-    {
-      menuName: "VEHICLE",
-      endpoint: "blabla",
-    },
-    {
-        menuName: "VEHICLE",
-        endpoint: "blabla",
-      },
   ];
-  const scroolFunction = (componentName: string): void => {
-    scroller.scrollTo(componentName, {
-      duration: 800,
-      delay: 0,
-      smooth: "easeInOutQuart",
-    });
+
+  const handleMenuActive = (e: string) => {
+    setActiveMenu(e);
   };
+
+  useEffect(() => {
+    console.log("modalStateReactive >>>", modalData)
+    console.log("modalStateReactive >>>", modalStateReactive())
+  }, [])
+  
+
+ 
   return (
     <>
       <Layout className="layout">
@@ -47,27 +67,40 @@ const Index = () => {
               </div>
             </Col>
             <Col xs={18}>
-              <Menu theme="dark" mode="horizontal">
-                <Menu.Item
-                  key={"1"}
-                  onClick={() => scroolFunction("FILMS")}
-                >{`Film`}</Menu.Item>
-                <Menu.Item
-                  key={"2"}
-                  onClick={() => scroolFunction("PEOPLE")}
-                >{`People`}</Menu.Item>
-                <Menu.Item
-                  key={"3"}
-                  onClick={() => scroolFunction("PLANET")}
-                >{`Planet`}</Menu.Item>
-                <Menu.Item
-                  key={"4"}
-                  onClick={() => scroolFunction("STAR SHIP")}
-                >{`Star Ship`}</Menu.Item>
-                <Menu.Item
-                  key={"5"}
-                  onClick={() => scroolFunction("VEHICLE")}
-                >{`Vehicle`}</Menu.Item>
+              <Menu theme="dark" mode="horizontal" selectedKeys={[`${activeMenu}`]}>
+                <Menu.Item key={"FILMS"}>
+                  <Link
+                    onSetActive={handleMenuActive}
+                    to="FILMS"
+                    spy={true}
+                    smooth={true}
+                    duration={800}
+                  >
+                    {'Film'}
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key={"PEOPLE"}>
+                  <Link
+                    onSetActive={handleMenuActive}
+                    to="PEOPLE"
+                    spy={true}
+                    smooth={true}
+                    duration={800}
+                  >
+                    {'People'}
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key={"PLANET"}>
+                  <Link
+                    onSetActive={handleMenuActive}
+                    to="PLANET"
+                    spy={true}
+                    smooth={true}
+                    duration={800}
+                  >
+                    {'Planet'}
+                  </Link>
+                </Menu.Item>
               </Menu>
             </Col>
           </Row>
@@ -77,7 +110,7 @@ const Index = () => {
             <LandingPage />
             {menuSection.map((e, index) => (
               <Element name={e.menuName} className={"element-section"}>
-                <SectionPage data={e} />
+                <SectionPage sectionPageData={e} activeMenu={activeMenu} />
               </Element>
             ))}
           </>
@@ -86,6 +119,7 @@ const Index = () => {
           Ant Design ©2018 Created by Ant UED
         </Footer>
       </Layout>
+      <ModalDetails visible={modalData.dataDetailsId} dataDetailsId={modalData.dataDetailsId} />
     </>
   );
 };

@@ -1,15 +1,13 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { cache } from './cache';
 
 
-const httpLink = createHttpLink({
-    uri: 'https://swapi-graphql.netlify.app',
-    fetchOptions: {
-        mode: 'no-cors',
-      }
+const httpLink = new HttpLink({
+    uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index'
   });
 
+
 export const client = new ApolloClient({
-    cache: new InMemoryCache(),
-    link: httpLink,
-    connectToDevTools: true,
+    cache: cache,
+    link: httpLink
 });

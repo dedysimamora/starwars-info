@@ -22,6 +22,18 @@
     align-items: center;
 }
 
+.section-avatar-skeleton .ant-skeleton-avatar {
+  width: 200px;
+  height: 300px;
+  margin-top: 40px;
+}
+
+.section-title-skeleton .ant-skeleton-avatar {
+  display: block !important;
+  width: 50px;
+}
+
+
 
 @media screen and (max-width: 480px) {
   .section-page-container {
@@ -45,5 +57,21 @@
   }
   .hide-on-dekstop {
       display: none;
+  }
+
+  .section-image-initial-card {
+    width: 200px;
+    height: 300px;
+    background-color: #E6E8EA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  h1.section-image-initial-card-title{
+    font-size: 70px;
+    font-weight: 900;
+    color: #1890ff;
   }
 }

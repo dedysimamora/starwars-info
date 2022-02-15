@@ -1,6 +1,7 @@
 import React from "react";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import { CardComponent } from "./card";
+import {  Skeleton } from "antd";
 import "./globalStyles.css";
 import useDrag from "./useDrag";
 
@@ -12,7 +13,8 @@ interface horizontalScroolType {
 }
 
 const  HorizontalScrool : React.FC<horizontalScroolType> = ({data, onClickFunct})  => {
-  const { dragStart, dragStop, dragMove, dragging } = useDrag();
+  const { dragStart, dragStop, dragMove } = useDrag();
+
   const handleDrag = ({ scrollContainer }: scrollVisibilityApiType) => (
     ev: React.MouseEvent
   ) =>
@@ -23,10 +25,8 @@ const  HorizontalScrool : React.FC<horizontalScroolType> = ({data, onClickFunct}
     });
 
 
-
   return (
     <>
-   
       <div className="example" >
         <div onMouseLeave={dragStop}>
           <ScrollMenu
@@ -35,13 +35,18 @@ const  HorizontalScrool : React.FC<horizontalScroolType> = ({data, onClickFunct}
             onMouseUp={() => dragStop}
             onMouseMove={handleDrag}
           >
-            {data.map(({ id, title,releaseDate }, index) => (
+            {
+            
+            data === null ?
+            new Array(3).fill(null).map((e) => (
+              <Skeleton.Avatar className="horizontal-card-skeleton" active={true} size={"large"} shape={"square"} />
+            )) :
+            
+            data.map((e : any, index : number) => (
               <CardComponent
                 index={index}
-                title={title}
-                releaseDate={releaseDate}
-                itemId={id} // NOTE: itemId is required for track items
-                key={id}
+                data={e}
+                key={index}
                 onClick={onClickFunct}
               />
             ))}
