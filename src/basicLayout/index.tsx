@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Layout, Menu, Row, Col } from "antd";
 import starWarsLogo from "../assets/logo/starWarsLogo.png";
 import LandingPage from "../container/landingPage";
@@ -6,7 +6,6 @@ import SectionPage from "../container/sectionPage";
 import ModalDetails from "../component/modalDetails"
 import { useQuery } from '@apollo/client';
 import { Element, Link } from "react-scroll";
-import {modalStateReactive} from "../apollo/reactive-variable/modal-data"
 import {GET_MODAL_DATA} from "../apollo/query/client-query"
 import {
   GET_MOVIES,
@@ -16,7 +15,7 @@ import {
 import "./basicLayout.css";
 const Index = () => {
   const { Header, Content, Footer } = Layout;
-  const {data : {modal : modalData}, loading, error} = useQuery(GET_MODAL_DATA)
+  const {data : {modal : modalData}} = useQuery(GET_MODAL_DATA)
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const menuSection = [
     {
@@ -49,11 +48,7 @@ const Index = () => {
     setActiveMenu(e);
   };
 
-  useEffect(() => {
-    console.log("modalStateReactive >>>", modalData)
-    console.log("modalStateReactive >>>", modalStateReactive())
-  }, [])
-  
+
 
  
   return (
@@ -73,6 +68,7 @@ const Index = () => {
                     onSetActive={handleMenuActive}
                     to="FILMS"
                     spy={true}
+                    offset={-100}
                     smooth={true}
                     duration={800}
                   >
@@ -84,6 +80,7 @@ const Index = () => {
                     onSetActive={handleMenuActive}
                     to="PEOPLE"
                     spy={true}
+                    offset={-100}
                     smooth={true}
                     duration={800}
                   >
@@ -95,6 +92,7 @@ const Index = () => {
                     onSetActive={handleMenuActive}
                     to="PLANET"
                     spy={true}
+                    offset={-100}
                     smooth={true}
                     duration={800}
                   >

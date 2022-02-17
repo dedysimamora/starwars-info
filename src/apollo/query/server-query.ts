@@ -39,11 +39,13 @@ export const GET_PEOPLE = gql`
         starshipConnection {
           starships {
             name
+            id
           }
         }
         vehicleConnection {
           vehicles {
             name
+            id
           }
         }
       }
@@ -115,8 +117,8 @@ export const GET_STAR_SHIP = gql`
 
 export const GET_VEHICLE = gql`
   query getVehicle($id: ID!) {
-      vehicles(id: $id) {
-        id
+    vehicle(id: $id) {
+        name
         model
         length
         crew

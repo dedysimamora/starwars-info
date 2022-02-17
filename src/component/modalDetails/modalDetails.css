@@ -26,9 +26,13 @@ span.modal-detail-deesc{
 }
 
 .modal-details-card .ant-card-body{
-    padding: 10px 0px;
+    padding: 5px 0px;
     display: flex;
     justify-content: center;
+}
+
+.modal-details-card .ant-card-body p{
+    margin-bottom: 0px;
 }
 .modal-details-card .ant-card-head{
     padding: 0px;

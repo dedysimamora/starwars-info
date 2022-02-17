@@ -53,7 +53,7 @@
 
 @media screen and (min-width: 480px) {
   .section-page-container {
-    padding: 50px;
+    padding: 20px 50px;
   }
   .hide-on-dekstop {
       display: none;

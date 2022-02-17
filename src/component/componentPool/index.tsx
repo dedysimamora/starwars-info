@@ -1,13 +1,7 @@
-import React, {useState} from "react";
-import { Row, Col, Avatar, Tooltip, Typography, Skeleton, Modal } from "antd";
+import React from "react";
+import { Row, Col, Avatar, Tooltip, Typography, Skeleton } from "antd";
 import { getInitialName } from "../../utils/getInitialName";
-import {modalReactiveAction} from "../../apollo/reactive-variable/modal-data"
-import {
-  GET_PERSON,
-  GET_PLANET,
-  GET_STAR_SHIP,
-  GET_VEHICLE
-} from "../../apollo/query/server-query";
+import { modalReactiveAction } from "../../apollo/reactive-variable/modal-data";
 import "./componentPool.css";
 
 interface componentPoolProps {
@@ -28,22 +22,16 @@ const Index: React.FC<componentPoolProps> = ({ title, data }) => {
     "#B4491A",
     "#EAA890",
   ];
-  const { Title } = Typography;
-  const mappingQueryType =  {
-      Person : GET_PERSON,
-      Vehicle : GET_VEHICLE,
-      Planet : GET_PLANET,
-      Starship: GET_STAR_SHIP
-  }
 
-  const onClickFunction = (index : number) => {
-     console.log(data[index], "<<<<<<<< data di onClick")
-     modalReactiveAction.turnOnModal(true, data[index])
-  }
+  const { Title } = Typography;
+
+  const onClickFunction = async (index: number) => {
+    modalReactiveAction.turnOnModal(true, data[index]);
+  };
 
   return (
     <div>
-      {title == undefined ? (
+      {title === undefined ? (
         <Skeleton.Button
           className="component-pool-title-skeleton"
           active={true}
