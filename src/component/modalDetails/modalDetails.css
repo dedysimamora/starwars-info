@@ -1,0 +1,55 @@
+
+
+
+
+.modal-detail-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h2.modal-detail-title {
+    font-weight: 900;
+    color: #001529;
+    margin-bottom: 0px;
+}
+
+span.modal-detail-deesc{
+    color: #81B1CE;
+    font-weight: 700;
+}
+
+
+@media screen and (max-width: 480px) {
+   
+}
+
+.modal-details-card .ant-card-body{
+    padding: 5px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-details-card .ant-card-body p{
+    margin-bottom: 0px;
+}
+.modal-details-card .ant-card-head{
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    min-height: 20px !important;
+    background-color: #001529;
+}
+
+.modal-details-card .ant-card-head-title{
+    padding: 5px;
+    color: white;
+    font-weight: 700;
+    
+}
+
+
+@media screen and (min-width: 480px) {
+   
+}

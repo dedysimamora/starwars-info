@@ -5,4 +5,13 @@
   .react-horizontal-scrolling-menu--item {
     margin-bottom: 10px;
   }
+
+  .horizontal-card-skeleton .ant-skeleton-avatar{
+    width: 150px;
+    height: 200px;
+    margin-top: 40px;
+    margin-right: 20px;
+  }
+
+  
   
