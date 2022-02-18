@@ -45,6 +45,7 @@ const Index = () => {
   ];
 
   const handleMenuActive = (e: string) => {
+    console.log(e)
     setActiveMenu(e);
   };
 
@@ -67,8 +68,8 @@ const Index = () => {
                   <Link
                     onSetActive={handleMenuActive}
                     to="FILMS"
-                    spy={true}
                     offset={-100}
+                    spy={true}
                     smooth={true}
                     duration={800}
                   >
@@ -91,8 +92,8 @@ const Index = () => {
                   <Link
                     onSetActive={handleMenuActive}
                     to="PLANET"
+                    offset={-150}
                     spy={true}
-                    offset={-100}
                     smooth={true}
                     duration={800}
                   >
@@ -114,7 +115,7 @@ const Index = () => {
           </>
         </Content>
         <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2018 Created by Ant UED
+          Starwars Info ©2022
         </Footer>
       </Layout>
       <ModalDetails visible={modalData.dataDetailsId} dataDetailsId={modalData.dataDetailsId} />
